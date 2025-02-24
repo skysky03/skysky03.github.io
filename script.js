@@ -7,14 +7,14 @@ const lang = 'zh';
 const resources = {
     zh: {
         pageTitle: "可以成为我的恋人吗？",
-        greeting: "你希望我怎么称呼你呢？(*>﹏<*)′",
-        subGreeting: "不想告诉我的话也可以留空哦",
+        // greeting: "你希望我怎么称呼你呢？(*>﹏<*)′",
+        // subGreeting: "不想告诉我的话也可以留空哦",
         usernamePlaceholder: "请输入你的名字",
-        confirmButton: "是这个名字呢",
+        confirmButton: "快点我快点我！",
         xiaohongshuLinkText: "",
         douyinLinkText: "",
         repoLinkText: "",
-        questionTemplate: (username) => `可以成为我的恋人吗？${username}`,
+        questionTemplate: (username) => `锦程宝宝可以和sky永远在一起吗 ~`,
         loveMessage: (username) => `!!!喜欢你!! ( >᎑<)♡︎ᐝ  ${username ? `${username}  ♡︎ᐝ(>᎑< )` : ""}`,
         yesButton: "可以",
         noButton: "不要",
@@ -28,8 +28,8 @@ const resources = {
     },
     en: {
         pageTitle: "Will you be my sweetheart?",
-        greeting: "What nickname can I call you? (´• ω •`) ♡",
-        subGreeting: "It's okay to keep it secret~",
+        // greeting: "What nickname can I call you? (´• ω •`) ♡",
+        // subGreeting: "It's okay to keep it secret~",
         usernamePlaceholder: "Type your cute name here...",
         confirmButton: "Confirm ( ˘ ³˘)♥",
         xiaohongshuLinkText: "Little Red Book ヾ(☆▽☆)",
@@ -60,9 +60,9 @@ const texts = resources[lang];
 document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
 document.title = texts.pageTitle;
 
-document.getElementById('greeting').innerText = texts.greeting;
-document.getElementById('subGreeting').innerText = texts.subGreeting;
-document.getElementById('usernameInput').placeholder = texts.usernamePlaceholder;
+// document.getElementById('greeting').innerText = texts.greeting;
+// document.getElementById('subGreeting').innerText = texts.subGreeting;
+// document.getElementById('usernameInput').placeholder = texts.usernamePlaceholder;
 document.getElementById('confirmNameButton').innerText = texts.confirmButton;
 document.getElementById('xiaohongshuLink').innerText = texts.xiaohongshuLinkText;
 document.getElementById('douyinLink').innerText = texts.douyinLinkText;
@@ -72,7 +72,7 @@ document.getElementById('yes').innerText = texts.yesButton;
 document.getElementById('no').innerText = texts.noButton;
 
 // 获取元素
-const nameInput = document.getElementById('usernameInput');
+// const nameInput = document.getElementById('usernameInput');
 const confirmNameButton = document.getElementById('confirmNameButton');
 const questionText = document.getElementById('question');
 const yesButton = document.getElementById('yes');
@@ -93,7 +93,7 @@ let safeUsername = "";
 
 // 确认名字按钮点击事件
 confirmNameButton.addEventListener('click', function () {
-    let username = nameInput.value;
+    let username = '李锦程';
     // 限制用户名长度，避免页面样式崩坏
     const maxLength = 20;
     safeUsername = username ? username.substring(0, maxLength) : "";

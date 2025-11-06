@@ -13,24 +13,28 @@ button {
     text-align: center;
     position: relative;
     width: 300px;
+    background-color:rgba(255,255,255,0.4);
+    background-size: 350px;
+    border-radius: 20px;
 }
 
 .title-row {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 10px;
+    margin-bottom: 4px;
     font-weight: bold;
+    padding: 12px 12px 0px 12px;
 }
 
 .photo {
-    width: 250px;
-    height: 250px;
-    background-color: black;
+    width: 280px;
+    height: 280px;
+    background-color:rgba(255,255,255,0.3);
     display: flex;
     justify-content: center;
     align-items: center;
-    color: white;
-    margin: 0 auto;
+    color:transparent;
+    margin: 4px auto 8px auto;
     border-radius: 10px;
     overflow: hidden;
 }
@@ -44,12 +48,12 @@ button {
 .desc {
     margin-top: 10px;
     font-size: 14px;
+    margin: 16px 12px 0 12px;
 }
 
 .arrow {
     position: absolute;
     top: 50%;
-    transform: translateY(-50%);
     background: none;
     border: none;
     width: 40px;
@@ -59,27 +63,171 @@ button {
     background-position: center;
     cursor: pointer;
     opacity: 0.7; /* 透明度 70% */
-    transition: opacity 0.2s ease;
+    transition: opacity 0.5s ease;
     outline: none;
+    border-radius: 0;
+    padding: 0;
+    background-color: transparent;
 }
 
 .arrow:focus {
     outline: none;
+    box-shadow: none;
 }
 
 /* 左右箭头的图片 */
 .left {
-    left: -60px;
-    background-image: url("album/arrow_left.png");
+    left: -55px;
+    background-image: url("assets/images/arrow_left.png");
 }
 
 .right {
-    right: -60px;
-    background-image: url("album/arrow_right.png");
+    right: -55px;
+    background-image: url("assets/images/arrow_right.png");
 }
 
-.flat-arrow {
-    border-radius: 0;
-    padding: 0;
-    background-color: transparent;
+#fireworks-btn {
+    display: block;
+    margin: 20px auto 20px; /* 顶部间距让它和相册分开 */
+    font-size: 1.5rem;
+    font-family: 'Lolita', sans-serif;
+    background-color: #ffffff;
+    border: none;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    font-size: 12px;
+}
+
+#fireworks-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+}
+
+#fireworks-btn:active {
+    transform: scale(0.97);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+.fadeable {
+    transition: opacity 280ms ease;
+    opacity: 1;
+}
+.fade-out {
+    opacity: 0;
+}
+
+/* 音乐条整体，和你的卡片同风格 */
+.audio-bar {
+  width: 320px;
+  max-width: 92vw;
+  margin: 18px auto 8px;
+  background-color: rgba(255,255,255,0.4);
+  backdrop-filter: blur(2px);
+  border-radius: 999px;
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+  font-family: 'Lolita', Arial, sans-serif;
+}
+
+/* 播放/暂停按钮 */
+.audio-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  background: #fff;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+  display: grid;
+  place-items: center;
+  font-size: 16px;
+  transition: transform .15s ease, box-shadow .15s ease;
+  padding: 0px;
+}
+.audio-btn:hover { transform: scale(1.05); box-shadow: 0 4px 10px rgba(0,0,0,0.16); }
+.audio-btn:active { transform: scale(0.97); }
+
+:root {
+  --track-h: 6px;
+  --thumb-d: 14px;
+}
+
+/* 进度条 */
+.audio-progress {
+  appearance: none;
+  -webkit-appearance: none;
+  flex: 1;
+  height: var(--track-h);
+  border-radius: 999px;
+  background: rgba(0,0,0,0.15);
+  outline: none;
+  padding: 0;
+}
+
+/* WebKit 滑轨与拇指 */
+.audio-progress::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #fff;
+  border: 1px solid rgba(0,0,0,0.15);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+  cursor: pointer;
+  margin-top: calc((var(--track-h) - var(--thumb-d)) / 2);
+}
+.audio-progress::-webkit-slider-runnable-track {
+  height: 6px;
+  border-radius: 999px;
+  background: linear-gradient(to right, #000 0 0) left/var(--fill,0%) 100% no-repeat, rgba(0,0,0,0.15);
+}
+
+/* Firefox */
+.audio-progress::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #fff;
+  border: 1px solid rgba(0,0,0,0.15);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+  cursor: pointer;
+}
+.audio-progress::-moz-range-track {
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(0,0,0,0.15);
+}
+
+/* 时间文本 */
+.audio-time {
+  font-size: 12px;
+  min-width: 82px;
+  text-align: right;
+  opacity: .9;
+}
+
+/* 仅本页面：把相册和播放器上下堆叠居中 */
+.album-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;   /* 让整块在视口垂直居中 */
+  min-height: 100vh;
+  gap: 16px;                 /* 相册和播放器间距 */
+}
+
+/* 让播放器宽度在移动端不崩，和相册同轴 */
+.audio-bar { margin: 0 auto; }
+
+#audio-icon {
+  width: 15px;
+  height: 15px;
+  object-fit: contain;
+  pointer-events: none; /* 不要挡按钮点击 */
 }

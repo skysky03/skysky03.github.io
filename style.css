@@ -12,7 +12,7 @@
 body {
     background-color: #f1d5da;
     text-align: center;
-    font-family: 'Lolita', Arial, sans-serif;
+    font-family: 'Lolita', sans-serif, Arial;
     margin: 0;
     padding: 0;
     display: flex;
@@ -76,6 +76,7 @@ h1 {
 /* 按钮通用样式 */
 button {
     font-family: 'Lolita', Arial, sans-serif;
+    color: black;
     font-size: 4vw;
     padding: 10px 20px;
     border: none;

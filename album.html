@@ -6,26 +6,42 @@
     <title>黄森凯 ❤ 李锦程</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="album.css">
+    <script src="assets/data/photos.js"></script>
+    <script src="album.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script src="function/lihua.js"></script>
     <link rel="shortcut icon" href="assets/images/favicon.ico" type="image/x-icon">
     <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
 </head>
-<body>
+<body class="album-body">
     <div class="album-container">
         <div class="title-row">
-            <span id="photo-title">第一天见面</span>
-            <span id="photo-date">2023.05.10</span>
+            <span id="photo-title" class="fadeable">事件</span>
+            <span id="photo-date" class="fadeable">日期</span>
         </div>
 
         <div class="photo">
-            <img id="photo-img" src="album/photo1.jpg" alt="Image">
+            <img id="photo-img" src="album/20241002.jpg" alt="Image" class="fadeable">
         </div>
 
-        <div class="desc" id="photo-desc">那天阳光很好，我们第一次见面。</div>
+        <div class="desc fadeable" id="photo-desc">细节</div>
+        <button id="fireworks-btn">🎉</button>
 
-        <button class="arrow left flat-arrow" onclick="prevPhoto()"></button>
-        <button class="arrow right flat-arrow" onclick="nextPhoto()"></button>
+        <button class="arrow left" onclick="prevPhoto()"></button>
+        <button class="arrow right" onclick="nextPhoto()"></button>
     </div>
 
-    <script src="album.js"></script>
+    <audio id="bg-audio" src="assets/audio/song1.mp3" preload="auto" loop></audio>
+
+    <div class="audio-bar" role="group" aria-label="音乐播放器">
+        <button id="audio-toggle" class="audio-btn" aria-label="播放">
+        <img id="audio-icon" src="assets/images/playsong.png" alt="play" />
+    </button>
+
+    <input id="audio-progress" class="audio-progress" type="range" min="0" max="100" value="0" step="0.1" aria-label="进度">
+    <div class="audio-time" aria-live="polite">
+        <span style="margin-left: 0%;" id="audio-current">0:00</span> / <span id="audio-duration">0:00</span>
+    </div>
+  </div>
 </body>
 </html>

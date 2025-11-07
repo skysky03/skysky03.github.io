@@ -248,3 +248,95 @@ button {
   pointer-events: none;
   /* 不要挡按钮点击 */
 }
+
+/* 让日期可以看出是可点击的 */
+#photo-date {
+  cursor: pointer;
+}
+
+/* 弹窗遮罩层 */
+.date-popup {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+/* 隐藏状态 */
+.date-popup.hidden {
+  display: none;
+}
+
+/* 弹窗内容盒子 */
+.date-popup-inner {
+  background-color: #ffffff;
+  border-radius: 16px;
+  padding: 14px 16px 10px;
+  width: 220px;
+  max-height: 65vh;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.18);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-family: 'Lolita', Arial, sans-serif;
+}
+
+/* 标题 */
+.date-popup-title {
+  font-size: 14px;
+  font-weight: bold;
+  color: #444;
+  margin-bottom: 4px;
+  text-align: center;
+}
+
+/* 日期列表容器 */
+.date-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  overflow-y: auto;
+  padding-right: 2px;
+}
+
+/* 每个日期按钮 */
+.date-item {
+  border: none;
+  border-radius: 999px;
+  padding: 6px 10px;
+  font-size: 13px;
+  text-align: center;
+  cursor: pointer;
+  background-color: #f5e4e8;
+  color: #444;
+  transition: background-color 0.15s ease, transform 0.12s ease, box-shadow 0.12s ease;
+}
+
+.date-item:hover {
+  background-color: #e8c6cf;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.12);
+}
+
+.date-item:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+/* 关闭按钮 */
+.date-close-btn {
+  margin-top: 4px;
+  align-self: center;
+  padding: 4px 14px;
+  font-size: 12px;
+  border-radius: 999px;
+  background-color: #f0d2d8;
+  color: #444;
+}
+
+.date-close-btn:active {
+  transform: scale(0.95);
+}

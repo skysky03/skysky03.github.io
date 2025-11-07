@@ -3,6 +3,19 @@ const photos = window.photos;
 let index = 0;
 let switching = false; // 防止连点把动画打爆
 
+// 日期到照片索引的映射，每个日期只记录第一条
+const dateToIndex = {};
+const dateListUnique = [];
+
+photos.forEach((p, i) => {
+    if (!p.date) return;
+    if (dateToIndex[p.date] == null) {
+        dateToIndex[p.date] = i;
+        dateListUnique.push(p.date);
+    }
+});
+
+
 function setContent(p) {
     document.getElementById("photo-title").textContent = p.title;
     document.getElementById("photo-date").textContent = p.date;
@@ -54,6 +67,7 @@ document.addEventListener("DOMContentLoaded", () => {
 document.addEventListener("DOMContentLoaded", () => {
     updatePhoto(false);
     setupAudioPlayer();
+    setupDatePicker();
 });
 
 function setupAudioPlayer() {
@@ -158,3 +172,65 @@ function tryAutoplay(audio) {
         });
 }
 
+function setupDatePicker() {
+    const dateSpan = document.getElementById('photo-date');
+    const popup = document.getElementById('date-popup');
+    const listEl = document.getElementById('date-list');
+    const closeBtn = document.getElementById('date-close');
+
+    if (!dateSpan || !popup || !listEl || !closeBtn) return;
+
+    // 创建日期按钮列表
+    function renderDateList() {
+        // 可选：按时间排序，如果你日期都是同格式 "DD-MM-YYYY"，可以不动，或者自定义排序
+        const dates = [...dateListUnique];
+        // 如果你想按时间升序：
+        dates.sort((a, b) => {
+            const [da, ma, ya] = a.split('-').map(Number);
+            const [db, mb, yb] = b.split('-').map(Number);
+            return new Date(ya, ma - 1, da) - new Date(yb, mb - 1, db);
+        });
+
+        listEl.innerHTML = dates.map(d =>
+            `<button class="date-item" data-date="${d}">${d}</button>`
+        ).join('');
+    }
+
+    renderDateList();
+
+    // 打开弹窗
+    function openPopup() {
+        popup.classList.remove('hidden');
+    }
+
+    // 关闭弹窗
+    function closePopup() {
+        popup.classList.add('hidden');
+    }
+
+    // 点击右上角日期，打开选择
+    dateSpan.addEventListener('click', openPopup);
+
+    // 关闭按钮
+    closeBtn.addEventListener('click', closePopup);
+
+    // 点击遮罩空白处关闭
+    popup.addEventListener('click', (e) => {
+        if (e.target === popup) {
+            closePopup();
+        }
+    });
+
+    // 点击某个日期，跳转到对应照片
+    listEl.addEventListener('click', (e) => {
+        const btn = e.target.closest('.date-item');
+        if (!btn) return;
+        const d = btn.dataset.date;
+        const idx = dateToIndex[d];
+        if (typeof idx === 'number') {
+            index = idx;
+            updatePhoto();
+        }
+        closePopup();
+    });
+}

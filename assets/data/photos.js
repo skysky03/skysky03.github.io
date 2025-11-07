@@ -836,7 +836,7 @@ window.photos = [
     {
         title: "^",
         date: "^",
-        src: "album/last.jpg",
+        src: "album/5201314.JPG",
         desc: "我爱你李锦程，希望你喜欢这份礼物！"
     },
 ];
